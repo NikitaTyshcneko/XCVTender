@@ -7,7 +7,7 @@ class Tender(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     category = models.CharField(max_length=255)
-    euro_value = models.DecimalField(max_digits=10, decimal_places=2)
+    euro_value = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     @property
     def btc(self):
