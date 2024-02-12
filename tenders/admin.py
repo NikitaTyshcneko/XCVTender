@@ -7,4 +7,4 @@ from .models import Tender
 
 @admin.register(Tender)
 class TenderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'category', 'euro_value')
+    list_display = ('id', 'name', 'category', 'euro_value', 'btc')

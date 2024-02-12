@@ -10,11 +10,14 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         for tender in tenders_guru_client.get_tenders():
-
-            Tender.objects.create(
-                name=tender['title'],
-                description=tender['description'],
-                category=tender['category'],
-                euro_value=tender['awarded_value_eur'],
+            obj, created = Tender.objects.get_or_create(
+                tender_id=tender['id'],
             )
+
+            if obj:
+                obj.name = tender['title']
+                obj.description = tender['description']
+                obj.category = tender['category']
+                obj.euro_value = tender['awarded_value_eur']
+                obj.save()
             self.stdout.write(self.style.SUCCESS(f"Successfully created dummy tender - {tender['title']}"))
